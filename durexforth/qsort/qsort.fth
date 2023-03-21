@@ -10,7 +10,6 @@ and + ;
 over c@ swap c! r> swap c! ;
 
 : partition ( l r -- l r r2 l2 )
-  \ ." l r " .s cr abort
   2dup mid c@ >r ( r: pivot )
   2dup begin
     swap begin dup c@ r@ < while
@@ -23,11 +22,8 @@ over c@ swap c! r> swap c! ;
   2dup > until  r> drop ;
 
 : qsort ( l r -- )
-  \ ." l r " .s cr
   partition
-  \ ." l r r2 l2 " .s cr abort
   swap rot
-  \ 2over 2over - + < if 2swap then
   2dup < if recurse else 2drop then
   2dup < if recurse else 2drop then ;
 
